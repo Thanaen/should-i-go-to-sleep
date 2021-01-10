@@ -1,0 +1,10 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": ["airbnb-typescript", "airbnb-typescript-prettier"],
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+  }
+}
