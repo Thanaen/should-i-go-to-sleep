@@ -7,7 +7,7 @@ import isBetween from 'dayjs/plugin/isBetween';
 
 dayjs.extend(isBetween);
 
-const getMessage = () => {
+const getMessage = (): string => {
   const hour = dayjs().hour();
   let message: string | undefined;
   if (hour >= 20 && hour < 22) {
