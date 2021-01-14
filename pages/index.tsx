@@ -4,6 +4,7 @@ import Typewriter from 'typewriter-effect';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import styles from '../styles/Home.module.css';
+import NightSky from '../components/NightSky';
 
 dayjs.extend(isBetween);
 
@@ -35,14 +36,14 @@ const Home: React.FC = () => {
       <Head>
         <title>Should I go to sleep ?</title>
       </Head>
+
       <div className={styles.main}>
-        <span>
-          <Typewriter
-            onInit={(t) => {
-              t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(getMessage()).start();
-            }}
-          />
-        </span>
+        <NightSky />
+        <Typewriter
+          onInit={(t) => {
+            t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(getMessage()).start();
+          }}
+        />
       </div>
     </>
   );
