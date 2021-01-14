@@ -1,11 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
-import Typist from 'react-typist';
-import 'react-typist/dist/Typist.css';
+import Typewriter from 'typewriter-effect';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
+import styles from '../styles/Home.module.css';
 
 dayjs.extend(isBetween);
+
+const pickRandomItem = (array: string[]): string => {
+  return array[Math.floor(Math.random() * array.length)];
+};
 
 const getMessage = (): string => {
   const hour = dayjs().hour();
@@ -19,7 +23,7 @@ const getMessage = (): string => {
   } else if (hour >= 2 && hour < 7) {
     message = 'Obviously YES !';
   } else {
-    message = 'Nope.';
+    message = pickRandomItem(['Nope.', 'No.', 'Noppity nope.', 'Absolutely not.']);
   }
 
   return message;
@@ -31,12 +35,15 @@ const Home: React.FC = () => {
       <Head>
         <title>Should I go to sleep ?</title>
       </Head>
-      <span>
-        <Typist>
-          Mmmmh...
-          <Typist.Delay ms={500} /> {getMessage()}
-        </Typist>
-      </span>
+      <div className={styles.main}>
+        <span>
+          <Typewriter
+            onInit={(t) => {
+              t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(getMessage()).start();
+            }}
+          />
+        </span>
+      </div>
     </>
   );
 };
