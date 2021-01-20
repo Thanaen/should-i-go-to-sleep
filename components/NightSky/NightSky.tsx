@@ -22,6 +22,7 @@ const NightSky: React.FC = () => {
           move: {
             direction: 'right',
             speed: 0.05,
+            outMode: 'out',
           },
           size: {
             value: 1,
