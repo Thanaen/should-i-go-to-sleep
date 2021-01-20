@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Typewriter from 'typewriter-effect';
+import Typewriter, { TypewriterClass } from 'typewriter-effect';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import styles from '../styles/Home.module.css';
@@ -31,6 +31,16 @@ const getMessage = (): string => {
 };
 
 const Home: React.FC = () => {
+  const typerRef = useRef<TypewriterClass[]>([]);
+
+  useEffect(() => {
+    setInterval(() => {
+      const writer = typerRef.current[0];
+
+      writer.deleteAll().typeString(getMessage()).start();
+    }, 60000);
+  }, []);
+
   return (
     <>
       <Head>
@@ -41,6 +51,7 @@ const Home: React.FC = () => {
         <NightSky />
         <Typewriter
           onInit={(t) => {
+            typerRef.current.push(t);
             t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(getMessage()).start();
           }}
         />
