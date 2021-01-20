@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import styles from '../styles/Home.module.css';
 import NightSky from '../components/NightSky';
+import { MessageTypeEnum } from '../models/MessageTypeEnum';
 
 dayjs.extend(isBetween);
 
@@ -12,32 +13,42 @@ const pickRandomItem = (array: string[]): string => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-const getMessage = (): string => {
+const getMessage = (): { message: string; type: MessageTypeEnum } => {
   const hour = dayjs().hour();
   let message: string | undefined;
+  let type: MessageTypeEnum | undefined;
   if (hour >= 20 && hour < 22) {
     message = 'I mean, why not.';
+    type = MessageTypeEnum.Probably;
   } else if (hour === 22) {
     message = 'Yes.';
+    type = MessageTypeEnum.NeutralYes;
   } else if (hour > 22 || hour < 2) {
     message = 'Yes. Seriously.';
+    type = MessageTypeEnum.ConfidentYes;
   } else if (hour >= 2 && hour < 7) {
     message = 'Obviously YES !';
+    type = MessageTypeEnum.ImperativeYes;
   } else {
     message = pickRandomItem(['Nope.', 'No.', 'Noppity nope.', 'Absolutely not.']);
+    type = MessageTypeEnum.Nope;
   }
 
-  return message;
+  return { message, type };
 };
 
 const Home: React.FC = () => {
   const typerRef = useRef<TypewriterClass[]>([]);
+  const lastDisplayedMessageType = useRef<MessageTypeEnum[]>([]);
 
   useEffect(() => {
     setInterval(() => {
-      const writer = typerRef.current[0];
+      const { message, type } = getMessage();
 
-      writer.deleteAll().typeString(getMessage()).start();
+      if (type != lastDisplayedMessageType.current[0]) {
+        const writer = typerRef.current[0];
+        writer.deleteAll().typeString(message).start();
+      }
     }, 60000);
   }, []);
 
@@ -52,7 +63,10 @@ const Home: React.FC = () => {
         <Typewriter
           onInit={(t) => {
             typerRef.current.push(t);
-            t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(getMessage()).start();
+            const { message, type } = getMessage();
+            lastDisplayedMessageType.current.push(type);
+
+            t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(message).start();
           }}
         />
       </div>
