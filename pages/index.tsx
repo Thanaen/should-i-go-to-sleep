@@ -56,6 +56,10 @@ const Home: React.FC = () => {
     <>
       <Head>
         <title>Should I go to sleep ?</title>
+        <meta
+          name="description"
+          content="A site that tells you (in a totally arbitrary way) if you should go to sleep or not."
+        />
       </Head>
 
       <div className={styles.main}>
