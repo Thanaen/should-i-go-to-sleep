@@ -38,16 +38,16 @@ const getMessage = (): { message: string; type: MessageTypeEnum } => {
 };
 
 const Home: React.FC = () => {
-  const typerRef = useRef<TypewriterClass[]>([]);
-  const lastDisplayedMessageType = useRef<MessageTypeEnum[]>([]);
+  const typerRef = useRef<TypewriterClass>();
+  const lastDisplayedMessageType = useRef<MessageTypeEnum>();
 
   useEffect(() => {
     setInterval(() => {
       const { message, type } = getMessage();
 
-      if (type != lastDisplayedMessageType.current[0]) {
-        const writer = typerRef.current[0];
-        writer.deleteAll().typeString(message).start();
+      if (type !== lastDisplayedMessageType.current) {
+        const writer = typerRef.current;
+        writer?.deleteAll().typeString(message).start();
       }
     }, 60000);
   }, []);
@@ -62,11 +62,11 @@ const Home: React.FC = () => {
         <NightSky />
         <Typewriter
           onInit={(t) => {
-            typerRef.current.push(t);
+            typerRef.current = t;
             const { message, type } = getMessage();
-            lastDisplayedMessageType.current.push(type);
+            lastDisplayedMessageType.current = type;
 
-            t.typeString('Mmmmh... ').pauseFor(1000).deleteAll().typeString(message).start();
+            t.typeString('Mmmmh...').pauseFor(1000).deleteAll().typeString(message).start();
           }}
         />
       </div>
