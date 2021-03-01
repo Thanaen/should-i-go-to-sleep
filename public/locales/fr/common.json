@@ -1,0 +1,11 @@
+{
+  "title": "Dois-je aller dormir ?",
+  "description": "Un site qui vous dit (de manière totalement arbitraire) si vous devriez aller dormir ou non.",
+  "messages": {
+    "nopeList": ["Non.", "Absolument pas.", "Nope."],
+    "mokayList": ["Pourquoi pas.", "Ça peut pas faire de mal, je suppose.", "Meh. Pourquoi pas."],
+    "yesList": ["Oui.","Yep.", "Ui."],
+    "clearlyYesList": ["Oui. Vraiment.", "OUI.", "Clairement, OUI."],
+    "obviouslyList": ["OUI. Fait pas genre que tu le sais pas.", "Ça me paraît évident, oui.", "As-tu vraiment besoin que je réponde?"]
+  }
+}
