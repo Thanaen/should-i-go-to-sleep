@@ -1,0 +1,11 @@
+{
+  "title":"Should I go to sleep ?",
+  "description": "A site that tells you (in a totally arbitrary way) if you should go to sleep or not.",
+  "messages": {
+    "nopeList": ["Nope.", "No.", "Noppity nope.", "Absolutely not."],
+    "mokayList": ["I mean, why not.", "Yeah you could do that.", "Meh. Why not."],
+    "yesList": ["Yes.", "Yep."],
+    "clearlyYesList": ["Yes. Seriously.", "YES.", "Clearly, YES."],
+    "obviouslyList": ["Obviously, yes ?!", "How are you even awake ?", "Do I even need to answer that ?"]
+  }
+}
