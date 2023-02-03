@@ -5,9 +5,9 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import styles from '../styles/Home.module.css';
-import NightSky from '../components/NightSky';
-import MessageTypeEnum from '../models/MessageTypeEnum';
+import styles from '@/styles/Home.module.css';
+import NightSky from '@/components/NightSky';
+import MessageTypeEnum from '@/models/MessageTypeEnum';
 
 dayjs.extend(isBetween);
 
