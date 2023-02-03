@@ -53,7 +53,6 @@ const Home: React.FC = () => {
         writer?.deleteAll().typeString(message).start();
       }
     }, 60000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
